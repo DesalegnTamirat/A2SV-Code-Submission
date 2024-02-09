@@ -1,24 +1,17 @@
-class Solution(object):
-    def productExceptSelf(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: List[int]
-        """
-        prefix = [1]
-        suffix = [1]
-
-        for num in nums:
-            prefix.append(prefix[-1] * num)
-
-        for num in nums[::-1]:
-            suffix.append(suffix[-1] * num)
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [1 for _ in range(n)]
+        # forward product
+        forward = 1
+        for i in range(n - 1):
+            forward *= nums[i]
+            ans[i + 1] *= forward
         
-        suffix.reverse()
-
-        ans = []
-        for i in range(1, len(nums) + 1):
-            ans.append(prefix[i - 1] * suffix[i])
+        # backward product
+        backward = 1
+        for i in range(n - 1, 0, -1):
+            backward *= nums[i]
+            ans[i - 1] *= backward
 
         return ans
-            
-        
