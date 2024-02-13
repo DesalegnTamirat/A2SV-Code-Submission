@@ -5,7 +5,6 @@ class Solution:
         subboxes = {n: set() for n in range(9)}
         for row in range(9):
             for col in range(9):
-                print(subboxes)
                 value = board[row][col]
                 if value == ".":
                     continue
