@@ -5,20 +5,22 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
-        if not nums1:
-            return []
+        n = len(nums2)
+        next_greater = [-1] * n
+        stack = []
+        num_index = {}
+        for i in range(n - 1, -1, -1):
+            num = nums2[i]
+            num_index[num] = i
+            while stack and num > stack[-1]:
+                stack.pop()
+            if stack:
+                next_greater[i] = stack[-1]
+            stack.append(num)
         
         ans = []
-        next_greater = []
-        for i in range(len(nums2)):
-            for j in range(i + 1, len(nums2)):
-                if nums2[j] > nums2[i]:
-                    next_greater.append(nums2[j])
-                    break
-            else:
-                next_greater.append(-1)
-        
-        for i in range(len(nums1)):
-            ans.append(next_greater[nums2.index(nums1[i])])
+        for num in nums1:
+            ans.append(next_greater[num_index[num]])
 
         return ans
+            
