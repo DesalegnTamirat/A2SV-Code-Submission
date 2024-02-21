@@ -12,9 +12,6 @@ class Solution(object):
             else:
                 dires.append(i)
 
-        print(radiants)
-        print(dires)
-
         i = 0
         n = len(senate)
         while radiants or dires:
