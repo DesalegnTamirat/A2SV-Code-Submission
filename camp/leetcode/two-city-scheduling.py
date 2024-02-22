@@ -4,19 +4,14 @@ class Solution:
         total_cost = 0
         a = 0
         b = 0
+        n = len(costs)
         for a_cost, b_cost in costs:
-            if a == len(costs) // 2:
+            if a == n // 2 or b != n // 2 and b_cost < a_cost:
                 total_cost += b_cost
                 b += 1
-            elif b == len(costs) // 2:
-                total_cost += a_cost
-                a += 1
-            elif a_cost < b_cost:
-                total_cost += a_cost
-                a += 1
             else:
-                total_cost += b_cost
-                b += 1
+                total_cost += a_cost
+                a += 1
         
         return total_cost
 
