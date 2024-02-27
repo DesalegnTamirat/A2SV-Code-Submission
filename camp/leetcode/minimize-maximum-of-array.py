@@ -5,10 +5,8 @@ class Solution:
         i = 1
         while i < len(nums):
             total += nums[i]
-            if nums[i] > maximum:
-                value = ceil(total / (i + 1))
-                maximum = max(maximum, value)
-            print(maximum)
+            average = ceil(total / (i + 1))
+            maximum = max(maximum, average)
             i += 1
 
         return maximum
