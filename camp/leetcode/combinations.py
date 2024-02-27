@@ -1,17 +1,21 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        ans = []
-        path = []
-        def backtrack(candidate):
-            if len(path) == k:
-                ans.append(path.copy())
+        combinations = []
+        combination = []
+        def backtrack(i):
+            if len(combination) == k:
+                combinations.append(combination.copy())
+                return 
+            elif i == n + 1 or len(combination) + n - i + 1 < k:
                 return
-            for next_candidate in range(candidate + 1, n + 1):
-                path.append(next_candidate)
-                backtrack(next_candidate)
-                path.pop()
-        backtrack(0)
-        return ans
+            
+            combination.append(i)
+            backtrack(i + 1)
+            combination.pop()
+            backtrack(i + 1)
+        
+        backtrack(1)
+        return combinations
 
 
             
